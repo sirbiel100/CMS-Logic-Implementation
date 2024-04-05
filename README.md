@@ -31,5 +31,5 @@
 - If Email already exists, return message warning.
 - Password requires at least 1 uppercase letter, 1 lowcase letter and 1 special character, minimum 8 characters.
 - Validate password on frontend and backend for more safety.
-- IF OK, save the new data on the database and redirect (E.x.: "/dashboard")
+- IF OK, POST the new data on the database and redirect (E.x.: "/dashboard")
 - IF NOT, display the respective error message
