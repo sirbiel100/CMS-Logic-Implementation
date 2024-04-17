@@ -33,3 +33,22 @@
 - Validate password on frontend and backend for more safety.
 - IF OK, POST the new data on the database and redirect (E.x.: "/dashboard")
 - IF NOT, display the respective error message
+
+### Frontend 
+
+- Download assets (images) 
+- Declare variables colors (E.x. --dark_gray, --black, --white)
+- Create a comment for each section (E.x.: Navbar, Dashboard, profile)
+- Development screen order: 
+  1. Phone
+  2. Tablet
+  3. Laptop
+  4. Desktop 
+- Form input validations using regular expressions (REGEX) (E.x.: If the password doesn't have 12+ characters and an uppercase letter, lowercase letter... return error!)
+- FETCH API with backend. 
+
+### Backend 
+
+- Make the necessary GET, POST, PATCH, DELETE methods
+- Check user's permission (E.x.: if user's permission is not ADMIN, he can't DELETE another account, just his own) 
+- validate user form inputs also on backend when doing a POST request. 
