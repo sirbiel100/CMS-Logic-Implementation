@@ -45,10 +45,43 @@
   3. Laptop
   4. Desktop 
 - Form input validations using regular expressions (REGEX) (E.x.: If the password doesn't have 12+ characters and an uppercase letter, lowercase letter... return error!)
-- FETCH API with backend. 
-
-### Backend 
-
-- Make the necessary GET, POST, PATCH, DELETE methods
-- Check user's permission (E.x.: if user's permission is not ADMIN, he can't DELETE another account, just his own) 
-- validate user form inputs also on backend when doing a POST request. 
+  
+  #### API
+   - Login: POST request to backend authenticate user, example:
+        ```js
+         async function Login(){
+        
+          await fetch("https://url-api/login", {
+              method: 'POST'
+              headers: {
+                content: application/json
+              },
+              body: JSON.stringify({
+              email: emailInput.value,
+              password: passwordInput.value
+              })
+        
+          }).then(res => {
+              if(!res.ok){
+              throw new Error('Error to login!')
+            }
+            return res.json
+        
+          }).then(data => {
+            localStorage.setItem('authenticateToken', data.token) // Save token to validate user on the local storage
+            window.location.href = "/dashboard" // Redirect to dashboard page
+          
+          }).catch(error => {
+              console.error(error)
+            })
+        
+        }
+        ```
+  - Logout: Delete the reference that is saved in the browser, example:
+    ```js
+    function Logout() {
+        localStorage.remove('authenticateToken')
+        window.location.href = "/login" // Redirects to 'Login' page
+    }
+    ```
+         
