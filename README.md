@@ -53,7 +53,7 @@
           await fetch("https://url-api/login", {
               method: 'POST'
               headers: {
-                content: application/json
+                content: "application/json"
               },
               body: JSON.stringify({
               email: emailInput.value,
@@ -119,6 +119,36 @@
     }
     ```
   - Page:
-      - Adding a new page:
-          ``
+      - Adding a new page: When the user click on the button to add a new page, he gonna gonna display the following function:
+          ```js
+            function addPage(newPageData) {
+          
+              const baseUrl = 'https://api.example.com'; 
+              const url = `${baseUrl}/cms/pages`; // Endpoint for creating pages
+              const headers = {
+                'Content-Type': 'application/json'
+              };
+              const requestOptions = {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(newPageData)
+              };
+            
+              return fetch(url, requestOptions)
+                .then(response => {
+                  if (!response.ok) { 
+                    throw new Error('Error creating new page: ' + response.status); // If response won't be ok, it gonna throw an error
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  window.alert('New page created successfully:', data); // Alert the user that the page was added successfully
+                })
+                .catch(error => {
+                  console.error('Error creating new page:', error.message); // Display error message in case of an API error
+                  throw error;
+                });
+          
+            }
+          ```
          
