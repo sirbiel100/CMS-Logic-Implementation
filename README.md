@@ -22,7 +22,6 @@
 ### Logout:
 
 - DELETE reference that is in the browser (I.e.: REMOVE Cookie or LocalStorage or Cache...)
-- Send a request to backend to DELETE the reference in DB (E.x.: When using JWT.)
 - Update the page and redirect (E.x.: "/home")
 
 ### Sign Up
@@ -84,4 +83,42 @@
         window.location.href = "/login" // Redirects to 'Login' page
     }
     ```
+  - SignUp: Send the input values to backend validate it, example:
+    ```js
+    function SignUp() {
+    
+      await fetch("https://url-api/signup", {
+              method: 'POST'
+              headers: {
+                content: application/json
+              },
+              body: JSON.stringify({ // Take the data from the user's form and send in the body as a request
+              name: nameInput.value,
+              email: emailInput.value,
+              password: passwordInput.value,
+              confirmPassword: confirmPasswordInput.value
+              })
+        
+          }).then(res => {
+              if(!res.ok){
+                window.alert('Error to Singup, verify the credentials!') // Error Message
+                return
+              }
+             return res.json
+             })
+
+            .then(() => {
+                window.alert("Account created! Please Login.") // Successful message
+                window.location.href = "/login" // Redirect To Login
+              })
+    
+            .catch(error => {
+              console.error(error)
+             });
+    
+    }
+    ```
+  - Page:
+      - Adding a new page:
+          ``
          
