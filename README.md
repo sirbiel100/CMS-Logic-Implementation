@@ -119,7 +119,7 @@
     }
     ```
   - Page:
-      - Adding a new page: When the user click on the button to add a new page, he gonna gonna display the following function:
+      - Adding: When the user click on the button to add a new page, he gonna gonna display the following function:
           ```js
             function addPage(newPageData) {
           
@@ -151,4 +151,53 @@
           
             }
           ```
-         
+        - Editing: The edit logic is similar to adding a new page, but instead of using 'POST' method (create a new request), we gonna use 'PUT' method (edit a request that already exists), example:
+           ```js
+             function editPage(pageId, updatedPageData) { // Necessary to specify the pageID to edit the requested page
+              const baseUrl = 'https://api.example.com'; 
+              const url = `${baseUrl}/cms/pages/${pageId}`; // Endpoint for editing a page
+              const headers = {
+                'Content-Type': 'application/json'
+              };
+              const requestOptions = {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(updatedPageData)
+              };
+            
+              return fetch(url, requestOptions)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Error editing page: ' + response.status); // Error message displayed if there is some wrong request
+                  }
+                  window.alert('Page edited successfully.'); // Show to the user that the page was edited if the response is OK
+                })
+                .catch(error => {
+                  window.alert('Error editing page:', error.message); // If there is some error on API request, display the error.
+                  throw error;
+                });
+            }
+           ```
+        - Deleting: To delete a page it gonna be necessary only the pageID to specify which page it will be deleted, example:
+          ```js
+          function deletePage(pageId) {
+              const baseUrl = 'https://api.example.com';
+              const url = `${baseUrl}/cms/pages/${pageId}`; // Endpoint for deleting a page
+              const requestOptions = {
+                method: 'DELETE'
+              };
+            
+              return fetch(url, requestOptions)
+                .then(response => {
+                  if (!response.ok) {
+                    window.alert('Error deleting page: ' + response.status); // Tell the user that there was some error on deleting the page
+                    return
+                  }
+                  window.alert('Page deleted successfully.'); // Show to the user the message was successfully deleted
+                })
+                .catch(error => {
+                  window.alert('Error deleting page:', error.message);  // If there is some error on API request, display the error.
+                  throw error;
+                });
+            }
+ 
